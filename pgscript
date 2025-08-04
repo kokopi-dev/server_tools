@@ -1,0 +1,12 @@
+#!/bin/bash
+#### tenative folder naming, this is for fw laptop on ubuntu desktop ####
+
+case "$1" in
+    dir)
+        sudo -u postgres psql -c "SHOW data_directory;"
+        sudo -u postgres psql -c "\l"  # List databases
+        ;;
+    size)
+        sudo du -sh /media/$USER/fw-ext-0/postgresql/data/
+        ;;
+esac

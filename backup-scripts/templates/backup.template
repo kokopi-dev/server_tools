@@ -1,0 +1,20 @@
+#!/bin/bash
+#Configuration
+backup_name="ENTER NAME HERE"
+backup_source="ENTER FOLDER PATH HERE"
+
+
+tar_file="${backup_name}_backup.tar.gz"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+if ! [ -d "$SCRIPT_DIR/backups" ];then
+    mkdir -p "$SCRIPT_DIR/backups"
+fi
+
+if tar -czf "$SCRIPT_DIR/backups/$tar_file" -C "$(dirname "$backup_source")" "$(basename "$backup_source")" 2>/dev/null; then
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] ✓ Backup created successfully: $tar_file"
+    exit 0
+else
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] ✗ Failed to create backup"
+    exit 1
+fi

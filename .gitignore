@@ -1,3 +1,5 @@
 .env
 .folder-watch.env
 test.sh
+*.backup.sh
+*.tar.gz
